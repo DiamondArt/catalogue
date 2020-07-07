@@ -1,86 +1,143 @@
-/******  ******/
-$(document).ready(function(){
+$(function(){
 
-    let carousel;
-    let widowsWidth;
-    let windowsHeight;
-    let i;
-    let carouselItem;
-    let itemInterval;
-    let title;
-    let categories;
-    let pagination;
-    let path;
-    let div;
-    let item;
-    let divitem;
-    let leftsize= 100;
-    let getItemWidthUn;
-    let getItemWidtdDeux;
-    let iframe;
+    var carousel,
+        windowWidth,
+        windowHeight,
+        i=0,
+        carouselItem,
+        itemInterval,
+        title,
+        categories,
+        pagination,
+        path,
+        div,
+        item,
+        divitem,
+        divitemW,
+        divitemH,
+        divitemMarge,
+        NbreItemLigne,
+        NbreItemColone,
+        NbreItemAffichable,
 
-    function bodyShow() {
+        iframe,
+        windowMarge,
+        reelwindowMargeHoriz,
+        reelwindowMargeVerti,
+        easeTemps,
+        item ,
+        indexItem,
+        currentGroupItem;
 
-        widowsWidth =  $(window).width();
-        windowsHeight = $(window).height();
-        div = document.createElement('div');
+        function initialize() {
+             divitemMarge = 30;
+             divitemW = 300;
+             divitemH = 300;
+             windowMarge = 0;
+             easeTemps = 1200;
+             windowWidth =  $(window).width();
+             windowHeight = $(window).height();
+             NbreItemLigne = Math.trunc((windowWidth - 2*windowMarge)/(divitemW+divitemMarge));
+             NbreItemColone = Math.trunc((windowHeight - 2*windowMarge)/(divitemH+divitemMarge));
+             console.log(NbreItemLigne);
+             console.log(NbreItemColone);
 
-        $('body').append(div);
-        $('body').css("background-color","blue");
-        $('div').addClass("carousel");
-        $('body').css("margin","auto");
+             reelwindowMargeHoriz = ( windowWidth - (windowMarge + NbreItemLigne * ( divitemW + divitemMarge ) ))/2;
+             reelwindowMargeVerti = ( windowHeight - (windowMarge + NbreItemColone * ( divitemH + divitemMarge ) + divitemMarge ))/2;
+             NbreItemAffichable = NbreItemColone * NbreItemLigne;
+             div = $("<div>");
+             $('body').css("margin",0);
+             $('body').css("overflow","hidden");
+         }
 
-        $('.carousel').css("width", widowsWidth);
-        $('.carousel').css("height", "800");
-        $('.divitem').css("margin-left", "80px");
-        $('.divitem').css("position", "relative");
-        $('.divitem').css("left", "70px");
+         function bodyShow() {
+            initialize();
+            $('body').append(div);
+            $('div').addClass("carousel");
+            var nl = NbreItemLigne;
+                ligne = 0,
+                ll=0, //decalage à gauche après animation
+                il=1,
+                ic=1;
 
+                for(i=1; i <= NbreItemAffichable; i++)
+                {
+                    jQuery('<div/>', {
+                        id: 'item'+i,
+                        "class": 'divitem',
+                        title: 'Numero ' +i
+                    }).appendTo('.carousel');
 
-        $('.carousel').css('background-color', 'red');
+                    $('#item'+i).css("width",  divitemW);
+                    $('#item'+i).css("position", "absolute");
 
-            for(i=0; i<=5; i++)
-            {
-                 divitem = document.createElement('div');
-                 $('.carousel').append(divitem);
-            }
+                     if (il > NbreItemLigne) {
+                       il = 1;
+                        ligne++;
+                    }
+                    ll = (il-1) * (divitemW + divitemMarge)+ reelwindowMargeHoriz;
 
-        $(".carousel div").addClass("divitem");
-        $('div .divitem').css("position", "absolute");
-        $('div .divitem').css("width", "300");
+                    // position hors ecran
+                    $('#item'+i).css("left",  windowWidth+2*(divitemW));
+                    // vrai position apres animation
 
-        getItemWidthUn = $('div .divitem').width();
+                    $('#item'+i).delay( 100*i ).animate({ left : ll +"px" }, easeTemps, 'easeOutQuint');
+                    $('#item'+i).css("top",  reelwindowMargeVerti + ligne*(divitemH+divitemMarge)+divitemMarge);
+                    $('#item'+i).css("height",  divitemH);
+                    $('#item'+i).css('background-color', 'yellow');
+                  il++;
+                }
+                        /*********pagination*********/
 
-        $('div .divitem').css("margin", "15px");
-        $('div .divitem').css("top", "90px");
-        $('div .divitem').css("left", leftsize +"px");
-        $('div .divitem').css("height", "300");
-        $('div .divitem').css('background-color', 'yellow');
+                item =  $(".divitem");
+                indexItem = item.length - 1; // on définit l'index du dernier élément
+                currentGroupItem = item.eq(i);
+               // item.css('display', 'none'); // on cache les items
+                currentGroupItem.css('display', 'block');
 
-        $('div .divitem').eq(1).css("background-color", "pink");
-        $('div .divitem').eq(1).css("left", (getItemWidthUn+200)+ "px");
+                $(".carousel").append('<div class="controls"> <span class="prev">Precedent</span> <span class="next">Suivant</span> </div>');
 
-        getItemWidtdDeux = getItemWidthUn+200;
+                $('.next').click(function(){ // catalogue suivante
 
-        $('div .divitem').eq(2).css("background-color", "purple");
-        $('div .divitem').eq(2).css("left", (getItemWidtdDeux+ 400) + "px");
-        $('div .divitem').eq(3).css("left", "-300px");
-        $('div .divitem').eq(3).css("margin", "400px");
-        $('div .divitem').eq(4).css("left", "100px");
-        $('div .divitem').eq(4).css("margin", "400px");
-        $('div .divitem').eq(5).css("left", "500px");
-        $('div .divitem').eq(5).css("margin", "400px");
-        /* iframe= document.createElement("iframe");
-        $("div .divitem").append(iframe);
-        $("iframe").css("height","300")
-        $("iframe").attr ("src","https://e-digital.fr/");*/
-    }
+                    i++; // on incrémente le compteur
 
+                    if( i <= indexItem ){
+                        item.css('display', 'none'); // on cache les catalogue
+                        currentGroupItem = item.eq(i); // on définit le nouvelle catalogue
+                        currentGroupItem.css('display', 'block'); // puis on l'affiche
+                    }
+                    else{
+                        i = indexItem;
+                    }
 
-    $(window).width();// get device width
-    $(window).height();// get device height
-    $(window).innerHeight(); // compare la hauteur
-    $(window).innerWidth(); // compare la largeur
+                 });
 
- bodyShow();
-});
+                 $('.prev').click(function(){ // catalogue précédente
+
+                    i--; // on décrémente le compteur, puis on réalise la même chose que pour la fonction "suivante"
+
+                    if( i >= 0 ){
+                        $item.css('display', 'none');
+                        $currentGroupItem = $groupItem.eq(i);
+                        $currentGroupItem.css('display', 'block');
+                    }
+                    else{
+                        i = 0;
+                    }
+
+                });
+
+                $(".carousel div").addClass("divitem");
+
+        }
+
+    $(document).ready(function(){
+     bodyShow();
+    });
+    
+    $(window).resize(function(){
+        $( ".divitem").remove();
+        bodyShow();
+       });
+    
+    });
