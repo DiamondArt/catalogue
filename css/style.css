@@ -92,6 +92,23 @@
     -ms-transform-origin: top left;
     -moz-transform-origin: top left;
 }
+.catalogue-desktop iframe .imagepath {
+    position: absolute;
+    left: 5% !important;
+    top: 38px;
+    width: 9000px !important;
+    height: 1392px;
+    transform: scale(0.3181);
+    -webkit-transform: scale(0.3181);
+    -o-transform: scale(0.3181);
+    -ms-transform: scale(0.3181);
+    -moz-transform: scale(0.3181);
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -moz-transform-origin: top left;
+}
 .catalogue-laptop {
     position: absolute;
     width: 450px;
@@ -166,6 +183,24 @@
 
 }
 .catalogue-mobile .iframe-mobile {
+    position: absolute;
+   left: 17.9% !important;
+   top: 34px;
+   width: 280px;
+   height: 570.4px;
+   border-radius: 50px;
+   transform: scale(0.3181);
+   -webkit-transform: scale(0.3181);
+   -o-transform: scale(0.3181);
+   -ms-transform: scale(0.3181);
+   -moz-transform: scale(0.3181);
+   transform-origin: top left;
+   -webkit-transform-origin: top left;
+   -o-transform-origin: top left;
+   -ms-transform-origin: top left;
+   -moz-transform-origin: top left;
+}
+.catalogue-mobile .iframe-mobile .imagepath {
     position: absolute;
    left: 17.9% !important;
    top: 34px;

@@ -36,9 +36,9 @@ $(function(){
              NbreItemAffichable = NbreItemColone * NbreItemLigne;
              currentCatalogue = NbreItemAffichable;
 
-             data=["image-1.jpg","image-2.jpg","image-3.png",
-             "image-4.jpeg","image-5.jpeg","image-6.jpeg","image-7.jpeg",
-             "image-8.jpg","image-9.jpg","image-10.png"];
+             data=["screenshot.png","image-1.jpg","image-3.png" ,"image-7.jpeg",
+             "image-8.jpg","image-9.jpg","image-10.png","image-2.jpg","image-6.jpeg",
+             "image-4.jpeg","image-5.jpeg"];
              div = $("<div>");
          }
 
@@ -50,60 +50,23 @@ $(function(){
             $('.swiper-container').append('<div class="swiper-pagination"></div>');
             iframe= "<iframe>";
 
-            for(i=0; i <= data.length; i++)
+            for(i=1; i <= data.length; i++)
                 {
                     jQuery('<div/>', {
                         id: 'item'+i,
-                        "class": 'swiper-slide animate__animated animate__slideInRight',
+                        "class": 'swiper-slide animate__animated animate__slideInRight swiper-slide'+i,
                     }).appendTo('.swiper-wrapper');
                     $('#item'+i).append("<img class='catalogue-image'/>")
 
                     var $div = $("#imgNames");
 
-                    jQuery('<div/>', {
-                        id: 'animatedModal'+i,
-                        "class": 'modal  modal-message modal-success fade ',
-                    }).appendTo('body');
-
-                   $('#animatedModal'+i).attr('aria-hidden', 'true');
-                   $('#animatedModal'+i).attr('tabindex', '-1');
-                   $('#animatedModal'+i).attr('role', '-dialog');
-
-                   $('#animatedModal'+i).css('display', 'none');
-                   jQuery('<div/>', {
-                    id: 'dialogue'+i,
-                    "class": 'modal-dialog modal-lg',
-                }).appendTo('#animatedModal'+i);
-
-                   jQuery('<div/>', {
-                    id: 'modal-content'+i,
-                    "class": 'modal-content',
-                }).appendTo('#dialogue'+i);
-
-                jQuery('<div/>', {
-                    id: 'modal-header'+i,
-                    "class": 'modal-header',
-                }).appendTo('#modal-content'+i);
-
-                jQuery('<div/>', {
-                    id: 'modal-body'+i,
-                    "class": 'modal-body',
-                }).appendTo('#modal-content'+i);
-
-                $("#modal-body"+i).append(iframe);
-                var modalwidth = $("#modal-body"+i).width();
-
-                $("iframe").css("width","850px");
-                $("iframe").css("height","400px");
-                $("iframe").attr("src", "https://colorlib.com/preview/theme/theinterior/");
-
-                  $('#modal-content'+i).append('<div  class="modal-footer"><a href="./index.html" type="button" class="btn btn-primary">OK</a></div>');
-
                     $('#item'+i).append('<a class="" data-toggle="modal"> voir</a>');
-                    $('#item'+i+' a').attr("href", "#animatedModal"+i);
+                    $('#item'+i+' a').attr("href", "./responsive.html");
                 }
 
-                $(".swiper-slide img").attr("src", "./images/image-3.png");
+                $.each(data,function(index,value){
+                    $(".swiper-slide img:eq("+index+")").attr('src','./images/'+value)
+                    });
                 $(".swiper-slide img").css("width", divitemW);
 
                 $(".swiper-slide").mouseover(function(){
