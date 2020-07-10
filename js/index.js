@@ -54,6 +54,7 @@ var carousel,
          "image-4.jpeg","image-5.jpeg"];
 
         groupeVignette = Math.trunc(data.length/NbreItemAffichable);
+
          div = $("<div>");
          div = $("<div>");
          $('body').css("margin",0);
