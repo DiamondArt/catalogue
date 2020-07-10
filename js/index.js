@@ -73,7 +73,7 @@ var carousel,
             ic=1;
          // alert(groupeVignette);
 
-            for(i=1; i <= NbreItemAffichable; i++)
+            for(i=1; i <= data.length; i++)
             {
                 jQuery('<div/>', {
                     id: 'groupeItem'+i,
@@ -119,18 +119,40 @@ var carousel,
               il++;
             }
             $(".carousel div").addClass("divitem");
+            $("body").append("<div id='pagination'><span class='prev'> < </span><span class='next'> > </span>");
 
-    }
+                         /**************** pagination ***********/
+            var j= 0;
+            var indexItem =  $(".divitem").length - 1;
+            var CurentGroupeItem = $(".divitem").eq(j);
 
+            function next() {
+                $(".next").click(function(){
+                    j++; // on incrémente le compteur
+                    if( j <= indexItem ){
+                        $(".divitem").css('display', 'none'); // on cache les images
+                        $CurentGroupeItem = $img.eq(j); // on définit la nouvelle image
+                        $CurentGroupeItem.css('display', 'block'); // puis on l'affiche
+                    }
+                    else{
+                        i = indexItem;
+                    }
+                  })
+                 };
+            }
+            function prev() {
+                $(".prev").click(function(){
 
-
+                });
+            }
 $(document).ready(function(){
  bodyShow();
+ next();
+            prev();
 });
 
 $(window).resize(function(){
     $( ".divitem").remove();
     bodyShow();
    });
-
 });
