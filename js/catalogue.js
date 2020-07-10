@@ -101,9 +101,9 @@ $(function(){
                             slidesPerView: NbreItemLigne,
                             spaceBetween: divitemMarge,
                           },
-                    }
+                    },
                   });
-        }
+                }
 
     $(document).ready(function(){
      bodyShow();
