@@ -1,0 +1,83 @@
+extends:
+  - 'standard'
+  - 'plugin:import/errors'
+  - 'plugin:import/warnings'
+  - 'plugin:import/typescript'
+
+env:
+  commonjs: true
+  es6: true
+  node: true
+
+parser: '@typescript-eslint/parser'
+
+parserOptions:
+  sourceType: module
+  ecmaVersion: 2018
+  project: './tsconfig.json'
+
+plugins:
+  - '@typescript-eslint'
+
+globals:
+  globalThis: false
+
+rules:
+  brace-style: off
+  comma-dangle: [error, 'always-multiline']
+  comma-style: [error, last]
+  guard-for-in: off
+  key-spacing: off
+  linebreak-style: [error, unix]
+  lines-between-class-members: off
+  no-caller: error
+  no-console: off
+  no-empty: off
+  no-multiple-empty-lines: [error, { max: 1, maxBOF: 0, maxEOF: 0 }]
+  no-multi-spaces: off
+  no-prototype-builtins: off
+  no-shadow: error
+  no-useless-constructor: off
+  no-var: error
+  import/no-extraneous-dependencies: [error, { devDependencies: false }]
+  import/order: [error, {
+    alphabetize: { order: asc },
+    newlines-between: always,
+    groups: [builtin, external, internal, parent, index, sibling],
+    pathGroups: [{ pattern: '@interactjs/**', group: internal }],
+  }]
+  prefer-arrow-callback: [error, { allowNamedFunctions: true }]
+  prefer-const: error
+  standard/array-bracket-even-spacing: off
+  standard/computed-property-even-spacing: off
+  standard/object-curly-even-spacing: off
+  '@typescript-eslint/array-type': [error, { default: 'array-simple' }]
+  '@typescript-eslint/explicit-member-accessibility': off
+  '@typescript-eslint/indent': [error, 2]
+  '@typescript-eslint/member-accessibility': off
+  '@typescript-eslint/member-delimiter-style': [error, { singleline: { delimiter: 'comma' }, multiline: { delimiter: 'none' } }]
+  '@typescript-eslint/no-empty-interface': error
+  '@typescript-eslint/no-inferrable-types': [error, { ignoreProperties: true }]
+  '@typescript-eslint/no-use-before-define': off
+
+overrides:
+  -
+    files: '*.spec.ts'
+    rules:
+      array-bracket-spacing: off
+      import/no-extraneous-dependencies: off
+  -
+    files: '*.ts{,x}'
+    rules:
+      arrow-parens: [error, 'as-needed']
+      no-unused-vars: off
+      no-use-before-define: off
+  -
+    files: '**/examples/**/*.js'
+    rules:
+      import/no-absolute-path: off
+
+settings:
+  import/resolver:
+    typescript:
+      directory: './tsconfig.json'

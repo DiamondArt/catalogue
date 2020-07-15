@@ -53,6 +53,7 @@ var carousel,
          "image-4.jpeg","image-5.jpeg","image-10.png","image-2.jpg","image-6.jpeg",
          "image-4.jpeg","image-5.jpeg"];
 
+
         groupeVignette = Math.trunc(data.length/NbreItemAffichable);
 
          div = $("<div>");
@@ -148,7 +149,7 @@ var carousel,
 $(document).ready(function(){
  bodyShow();
  next();
-            prev();
+ prev();
 });
 
 $(window).resize(function(){

@@ -1,0 +1,30 @@
+{
+  "exclude": [
+    "test/testProject"
+  ],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+
+    "allowJs": false,
+    "noEmit": true,
+
+    "strict": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@interactjs/_dev/*": ["./*"],
+      "@interactjs/*": ["./packages/@interactjs/*"]
+    }
+  }
+}

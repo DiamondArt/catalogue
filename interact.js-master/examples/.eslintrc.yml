@@ -1,0 +1,10 @@
+extends: '../.eslintrc.yml'
+
+globals:
+  interact: false
+  _: false
+  $: false
+
+rules:
+  no-console: off
+  import/no-unresolved: off

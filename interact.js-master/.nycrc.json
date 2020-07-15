@@ -1,0 +1,24 @@
+{
+  "per-file": false,
+  "statements": 64,
+  "branches": 48,
+  "functions": 58,
+  "lines": 64,
+  "include": [
+    "packages/@interactjs/**/*.{t,j}s{,x}"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/_*"
+  ],
+  "extension": [
+    ".ts",
+    ".tsx"
+  ],
+  "reporter": [
+    "text",
+    "lcov"
+  ],
+  "sourceMap": true,
+  "instrument": true
+}

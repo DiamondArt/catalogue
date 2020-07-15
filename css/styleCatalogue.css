@@ -41,18 +41,22 @@ body {
   align-items: center;
 }
 
- .swiper-slide a {
-    position:absolute;
-    top:88%;
-    left:40%;
-    width:24%;
-    color : white !important;
-    font-weight: bold;
-    background-color: rebeccapurple;
-    display: none;
-    margin-bottom: 10px;
+.btn-floating {
+top: -3rem;
+left: 4rem;
 }
-iframe{
+
+.btn-floating i {
+ font-size: 2rem !important;
+    font-weight: bold !important;
+}
+
+.btn-eye {
+ left: -11px !important;
+ top:-9rem;
+ }
+
+iframe {
     margin: 10px;
     border:none;
 }
