@@ -47,7 +47,7 @@
     "del": "^5.1.0",
     "domator": "latest",
     "errorify": "latest",
-    "eslint": "6",
+    "eslint": "9",
     "eslint-config-standard": "latest",
     "eslint-import-resolver-typescript": "latest",
     "eslint-plugin-import": "latest",
